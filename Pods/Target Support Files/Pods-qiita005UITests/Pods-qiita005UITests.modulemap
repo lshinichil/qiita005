@@ -1,0 +1,6 @@
+framework module Pods_qiita005UITests {
+  umbrella header "Pods-qiita005UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
