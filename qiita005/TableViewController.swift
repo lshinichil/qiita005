@@ -32,7 +32,6 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         super.viewDidLoad()
         
         getArticles()
-        
         self.qiitaTableView.delegate = self
         self.qiitaTableView.dataSource = self
         
@@ -40,9 +39,6 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         let xib = UINib(nibName: "QiitaTableViewCell", bundle: nil)
         //xibファイルを登録する
         self.qiitaTableView.register(xib, forCellReuseIdentifier: "QiitaTableViewCell")
-        
-        
-
         // Do any additional setup after loading the view.
 
     }
@@ -54,24 +50,17 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
                     return
                 }
                 let json = JSON(object)
-                
                 json.forEach{
                     (_,json) in
                     let article : [String: String?] = [
-                        
-                        
                         "title":json["title"].string,
                         "userId":json["user"]["id"].string,
                         "url":json["url"].string
                     ]
                     self.articles.append(article)
-                    
                     // print("\(self.articles[0]["title"] as? [String:Any])")
-                    
-                    
                     let titletext : String = json["title"].stringValue
                     let usertext : String = json["user"]["id"].stringValue
-                    
                     
                     print(" \(article)")
                     print("タイトルを表示 \(titletext)")
@@ -81,7 +70,6 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
                     self.N = 1
                     self.qiitaTableView.reloadData()
                 }
-                
         }
         
     }
@@ -101,14 +89,10 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.qiitaTableView.dequeueReusableCell(withIdentifier:"QiitaTableViewCell", for: indexPath) as! QiitaTableViewCell
         
-        
-
         if N == 1 {
             let at = self.articles[indexPath.row]
-            print(at)
-            let test : String? = at["title"] as? String
-
-            cell.titleLable?.text = test
+            
+            cell.titleLable?.text = at["title"] as? String
             cell.favoritedata.append(at)
             
         }else{
@@ -117,9 +101,6 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         //let articletext = articles[indexPath.row]
         //cell.textLabel?.text = articletext["title"]!
         //cell.detailTextLabel?.text = articletext["userId"]!
-        
-        
-        
         
         return cell
         

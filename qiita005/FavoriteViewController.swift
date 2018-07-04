@@ -11,9 +11,20 @@ import UIKit
 class FavoriteViewController: UIViewController , UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var favoriteWebView: UITableView!
-
+    var userDefaults = UserDefaults.standard
+    var test: [[String:String?]]  =  []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        test = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+
+        print(test)
+        print(test.count)
+        ///////////
+        //print 2
+        //////////
+        
         
         self.favoriteWebView.delegate = self
         self.favoriteWebView.dataSource = self
@@ -28,13 +39,17 @@ class FavoriteViewController: UIViewController , UITableViewDelegate,UITableView
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        
+        return test.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = self.favoriteWebView.dequeueReusableCell(withIdentifier:"FavoriteTableViewCell", for: indexPath) as! FavoriteTableViewCell
+        
+        let at = self.test[indexPath.row]
+        cell.favoriteLabel?.text = at["title"] as? String
         
         return cell
     }

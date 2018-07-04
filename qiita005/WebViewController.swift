@@ -13,12 +13,9 @@ class WebViewController: UIViewController {
     @IBOutlet weak var webViewController: UIWebView!
     var data: String!
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadAddressURL()
-        
     }
     
     func loadAddressURL(){

@@ -27,18 +27,13 @@ class QiitaTableViewCell: UITableViewCell {
         
         //永続保存
         userDefaults.synchronize()
-        
-        
-        let test = userDefaults.object(forKey: "favsum")
-
+        let test: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+        /////↑ここを配列で保存にしたい。
         print( "\(test)")
         ////////////////////////////////////////
         //ユーザーデフォルトにお気に入りボタンを押した際に保存したい
         //タイトル　URL ユーザー名の配列を作り　それぞれに登録するしかない？
         ////////////////////////////////////////
-        
-        
-        
     }
     
     override func awakeFromNib() {
