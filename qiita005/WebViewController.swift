@@ -11,7 +11,7 @@ import UIKit
 class WebViewController: UIViewController {
     
     @IBOutlet weak var webViewController: UIWebView!
-    var data: String!
+    var urldata: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,11 +19,10 @@ class WebViewController: UIViewController {
     }
     
     func loadAddressURL(){
-        let requestURL = NSURL(string: data)
+        //urldataのウェブサイトを表示する。
+        let requestURL = NSURL(string: urldata)
         let req = NSURLRequest(url: requestURL! as URL)
         webViewController.loadRequest(req as URLRequest)
-        
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {

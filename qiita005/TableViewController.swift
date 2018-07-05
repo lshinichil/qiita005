@@ -12,21 +12,8 @@ import SwiftyJSON
 
 class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
     @IBOutlet weak var qiitaTableView: UITableView!
-    var N = 0
+
     var articles:[[String:String?]] = []
- //配列を入れる
-    var testData: [String] = [
-        "111",
-        "222",
-        "333",
-        "444",
-        "555",
-        "666",
-        "777",
-        "888",
-        "999",
-        "100",
-        ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,9 +52,7 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
                     print(" \(article)")
                     print("タイトルを表示 \(titletext)")
                     print("ユーザー名\(usertext)")
-                    print(self.articles)
-                    print(self.articles[0])
-                    self.N = 1
+  
                     self.qiitaTableView.reloadData()
                 }
         }
@@ -89,27 +74,21 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.qiitaTableView.dequeueReusableCell(withIdentifier:"QiitaTableViewCell", for: indexPath) as! QiitaTableViewCell
         
-        if N == 1 {
             let at = self.articles[indexPath.row]
-            
             cell.titleLable?.text = at["title"] as? String
             cell.favoritedata.append(at)
-            
-        }else{
-            cell.titleLable?.text=self.testData[indexPath.row]
-        }
+        
         //let articletext = articles[indexPath.row]
         //cell.textLabel?.text = articletext["title"]!
         //cell.detailTextLabel?.text = articletext["userId"]!
         
         return cell
-        
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let next = self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
         
         //URLの値を渡す
-        next.data = self.articles[indexPath.row]["url"] as? String
+        next.urldata = self.articles[indexPath.row]["url"] as? String
         show(next,sender: nil)
         
     }

@@ -19,13 +19,6 @@ class FavoriteViewController: UIViewController , UITableViewDelegate,UITableView
         
         test = userDefaults.array(forKey: "favsum") as! [[String : String?]]
 
-        print(test)
-        print(test.count)
-        ///////////
-        //print 2
-        //////////
-        
-        
         self.favoriteWebView.delegate = self
         self.favoriteWebView.dataSource = self
         

@@ -19,9 +19,21 @@ class QiitaTableViewCell: UITableViewCell {
         
         //favsomはお気に入りのニュース
         var favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+
+        
         print("\(favoritedata)")
         favsum.append(contentsOf: favoritedata)
         print(" \(favsum)")
+   
+  //////////////////////////
+        ////favsumの中を検索して押したボタンのテーブルと一致するか確認する。
+        ////////////////////////
+        
+        let index = favsum.index(of: ["title" : titleLable.text])
+        
+
+        
+        
         
         //お気に入りのニュースをユーザーデフォルトに保存する。
         userDefaults.set(favsum,forKey:"favsum")
