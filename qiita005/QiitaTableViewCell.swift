@@ -19,19 +19,34 @@ class QiitaTableViewCell: UITableViewCell {
         
         //favsomはお気に入りのニュース
         var favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
-
+        var favdel: [[String:String?]] = []
         
-        print("\(favoritedata)")
+        //favdel 削除対象の値を入れる
+        favdel.append(contentsOf: favoritedata)
+        
+        //対象が既に配列にあるのかを確認する
+        let index = favsum.contains(favdel[0])
+        
+        if index{
+        //対象を削除
+            favsum.drop(while: favdel[0])
+            //↑ここでエラー出ちゃいます。。。。。
+            //
+            
+        }else {
+        //対象を追加
         favsum.append(contentsOf: favoritedata)
+        }
         print(" \(favsum)")
    
   //////////////////////////
         ////favsumの中を検索して押したボタンのテーブルと一致するか確認する。
         ////////////////////////
         
-        let index = favsum.index(of: ["title" : titleLable.text])
         
-
+        print(index)
+        //favsum.contains("title"[String : String?])
+        print(titleLable.text!)
         
         
         
@@ -52,6 +67,7 @@ class QiitaTableViewCell: UITableViewCell {
         //タイトル　URL ユーザー名の配列を作り　それぞれに登録するしかない？
         ////////////////////////////////////////
     }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
