@@ -26,11 +26,15 @@ class QiitaTableViewCell: UITableViewCell {
         
         //対象が既に配列にあるのかを確認する
         let index = favsum.contains(favdel[0])
-        
+        let indexdel = favsum.index(of: favdel[0])
         if index{
         //対象を削除
-            favsum.drop(while: favdel[0])
-            //↑ここでエラー出ちゃいます。。。。。
+        print(indexdel!)
+            
+        favsum.remove(at: indexdel!)
+            
+        
+        //出ちゃいます。。。。。
             //
             
         }else {
@@ -42,8 +46,7 @@ class QiitaTableViewCell: UITableViewCell {
   //////////////////////////
         ////favsumの中を検索して押したボタンのテーブルと一致するか確認する。
         ////////////////////////
-        
-        
+
         print(index)
         //favsum.contains("title"[String : String?])
         print(titleLable.text!)
