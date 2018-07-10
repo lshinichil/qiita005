@@ -13,9 +13,6 @@ class FavoriteTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-    
-        //favoriteLabel.text = test[0]["title"]
-        
         // Initialization code
     }
 

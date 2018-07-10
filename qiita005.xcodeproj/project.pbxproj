@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		3AC36D8C8ACEB8D268B07851 /* Pods_qiita005UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF52EABAE6169FDA6D2474F4 /* Pods_qiita005UITests.framework */; };
 		7A9EDB0B20D7E71D003DAC0F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9EDB0A20D7E71D003DAC0F /* AppDelegate.swift */; };
-		7A9EDB0D20D7E71D003DAC0F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9EDB0C20D7E71D003DAC0F /* ViewController.swift */; };
 		7A9EDB1020D7E71D003DAC0F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9EDB0E20D7E71D003DAC0F /* Main.storyboard */; };
 		7A9EDB1220D7E721003DAC0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A9EDB1120D7E721003DAC0F /* Assets.xcassets */; };
 		7A9EDB1520D7E721003DAC0F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A9EDB1320D7E721003DAC0F /* LaunchScreen.storyboard */; };
@@ -49,7 +48,6 @@
 		6A8C1A211BB03CD3B67A8BA3 /* Pods-qiita005.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-qiita005.debug.xcconfig"; path = "Pods/Target Support Files/Pods-qiita005/Pods-qiita005.debug.xcconfig"; sourceTree = "<group>"; };
 		7A9EDB0720D7E71D003DAC0F /* qiita005.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qiita005.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A9EDB0A20D7E71D003DAC0F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7A9EDB0C20D7E71D003DAC0F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7A9EDB0F20D7E71D003DAC0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7A9EDB1120D7E721003DAC0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A9EDB1420D7E721003DAC0F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				7A9EDB0A20D7E71D003DAC0F /* AppDelegate.swift */,
-				7A9EDB0C20D7E71D003DAC0F /* ViewController.swift */,
 				7A9EDB3820D7F863003DAC0F /* TableViewController.swift */,
 				7A9EDBB820E146DE003DAC0F /* WebViewController.swift */,
 				7A9EDBBA20E154C6003DAC0F /* FavoriteViewController.swift */,
@@ -401,7 +398,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7A9EDB3920D7F863003DAC0F /* TableViewController.swift in Sources */,
-				7A9EDB0D20D7E71D003DAC0F /* ViewController.swift in Sources */,
 				7A9EDB7A20DAA0F5003DAC0F /* QiitaTableViewCell.swift in Sources */,
 				7A9EDBB920E146DE003DAC0F /* WebViewController.swift in Sources */,
 				7A9EDBBB20E154C6003DAC0F /* FavoriteViewController.swift in Sources */,

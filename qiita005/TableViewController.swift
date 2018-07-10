@@ -77,11 +77,6 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             let at = self.articles[indexPath.row]
             cell.titleLable?.text = at["title"] as? String
             cell.favoritedata.append(at)
-        
-        //let articletext = articles[indexPath.row]
-        //cell.textLabel?.text = articletext["title"]!
-        //cell.detailTextLabel?.text = articletext["userId"]!
-        
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

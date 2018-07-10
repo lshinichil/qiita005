@@ -46,6 +46,14 @@ class FavoriteViewController: UIViewController , UITableViewDelegate,UITableView
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let next = self.storyboard?.instantiateViewController(withIdentifier: "WebViewController") as! WebViewController
+        
+        //URLの値を渡す
+        next.urldata = self.test[indexPath.row]["url"] as? String
+        show(next,sender: nil)
+        
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
