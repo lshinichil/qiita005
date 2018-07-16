@@ -15,6 +15,9 @@ class WebViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    //起動時
+    override func viewDidAppear(_ animated: Bool) {
         loadAddressURL()
     }
     

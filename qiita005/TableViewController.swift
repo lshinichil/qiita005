@@ -11,13 +11,23 @@ import Alamofire
 import SwiftyJSON
 
 class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
+    
     @IBOutlet weak var qiitaTableView: UITableView!
-
+    
+    
+    let userDefaults = UserDefaults.standard
     var articles:[[String:String?]] = []
+    var page = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        // Do any additional setup after loading the view.
+    }
+    override func viewWillAppear(_ animated: Bool) {
         
+        self.articles = []
+        self.page = 1
         getArticles()
         self.qiitaTableView.delegate = self
         self.qiitaTableView.dataSource = self
@@ -26,37 +36,6 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         let xib = UINib(nibName: "QiitaTableViewCell", bundle: nil)
         //xibファイルを登録する
         self.qiitaTableView.register(xib, forCellReuseIdentifier: "QiitaTableViewCell")
-        // Do any additional setup after loading the view.
-
-    }
-    
-    func getArticles(){
-        Alamofire.request("https://qiita.com/api/v2/items")
-            .responseJSON{ response in
-                guard let object = response.result.value else{
-                    return
-                }
-                let json = JSON(object)
-                json.forEach{
-                    (_,json) in
-                    let article : [String: String?] = [
-                        "title":json["title"].string,
-                        "userId":json["user"]["id"].string,
-                        "url":json["url"].string
-                    ]
-                    self.articles.append(article)
-                    // print("\(self.articles[0]["title"] as? [String:Any])")
-                    let titletext : String = json["title"].stringValue
-                    let usertext : String = json["user"]["id"].stringValue
-                    
-                    print(" \(article)")
-                    print("タイトルを表示 \(titletext)")
-                    print("ユーザー名\(usertext)")
-  
-                    self.qiitaTableView.reloadData()
-                }
-        }
-        
     }
     //セクションの数
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -65,6 +44,7 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     //セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return articles.count
+            //articles.count
     }
     //セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -73,10 +53,30 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
     //セルの中
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.qiitaTableView.dequeueReusableCell(withIdentifier:"QiitaTableViewCell", for: indexPath) as! QiitaTableViewCell
-        
             let at = self.articles[indexPath.row]
-            cell.titleLable?.text = at["title"] as? String
             cell.favoritedata.append(at)
+            cell.favoriteLabel?.text = at["title"] as? String
+        
+            //ボタンの編集
+            cell.favoriteButtonLabel.setTitle("...", for: .normal)
+        
+            let favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+            var favdel: [[String:String?]] = []
+            var favoritedata: [[String:String?]] = []
+            //atをディクショナリ配列にする
+            favoritedata.append(at)
+        
+            //削除対象を入れる
+            favdel.append(contentsOf: favoritedata)
+        
+            //対象が既に配列にあるかを確認する
+            let index = favsum.contains(favdel[0])
+            //let index = favsum.contains(favoritedata[0])
+            if index{
+                cell.favoriteButtonLabel.setTitle(" - ", for: .normal)
+            }else{
+                cell.favoriteButtonLabel.setTitle(" + ", for: .normal)
+            }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -91,6 +91,45 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func getArticles(){
+        Alamofire.request("https://qiita.com/api/v2/items?page=\(page)&per_page=10")
+            .responseJSON{ response in
+                guard let object = response.result.value else{
+                    return
+                }
+                let json = JSON(object)
+                json.forEach{
+                    (_,json) in
+                    let article : [String: String?] = [
+                        "title":json["title"].string,
+                        "userId":json["user"]["id"].string,
+                        "url":json["url"].string
+                    ]
+                    
+                    self.articles.append(article)
+                    self.qiitaTableView.reloadData()
+                }
+        }
+        
+    }
+
+    @IBAction func rightSwipeGestureRecognizer(_ sender: UISwipeGestureRecognizer) {
+        if page < 10{
+            self.page += 1
+        }
+        self.articles = []
+        getArticles()
+    }
+    
+    @IBAction func leftSwipeGestureRecognizer(_ sender: UISwipeGestureRecognizer) {
+        if page > 0{
+            self.page -= 1
+        }
+        self.articles = []
+        getArticles()
+    }
+    
     
 
     /*

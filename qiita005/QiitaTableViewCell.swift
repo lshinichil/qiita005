@@ -8,17 +8,22 @@
 
 import UIKit
 
-class QiitaTableViewCell: UITableViewCell {
-    
+class QiitaTableViewCell: UITableViewCell { 
+   
+    //TableViewControllerから取得
     var favoritedata: [[String:String?]] = []
+    var favdel: [[String:String?]] = []
     let userDefaults = UserDefaults.standard
 
+    //UIdata
+
     
-    @IBOutlet weak var titleLable: UILabel!
+    @IBOutlet weak var favoriteLabel: UILabel!
+    @IBOutlet weak var favoriteButtonLabel: UIButton!
     @IBAction func favoriteButton(_ sender: Any) {
         
-        //favsomはお気に入りのニュース
         var favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+        
         var favdel: [[String:String?]] = []
         
         //favdel 削除対象の値を入れる
@@ -30,28 +35,30 @@ class QiitaTableViewCell: UITableViewCell {
         
         if index{
         //対象を削除
-        favsum.remove(at: indexdel!)
+            favsum.remove(at: indexdel!)
+            favoriteButtonLabel.setTitle(" + ", for: .normal)
         }else {
         //対象を追加
-        favsum.append(contentsOf: favoritedata)
+            favsum.append(contentsOf: favoritedata)
+            favoriteButtonLabel.setTitle(" - ", for: .normal)
         }
         //お気に入りのニュースをユーザーデフォルトに保存する。
         userDefaults.set(favsum,forKey:"favsum")
         //永続保存
         userDefaults.synchronize()
+        favoritedata = []
         
-        let test: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
-        /////↑ここを配列で保存にしたい。
     }
-
     
     override func awakeFromNib() {
         super.awakeFromNib()
+
         // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        
 
         // Configure the view for the selected state
     }

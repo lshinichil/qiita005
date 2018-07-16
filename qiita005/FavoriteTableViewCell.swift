@@ -9,10 +9,30 @@
 import UIKit
 
 class FavoriteTableViewCell: UITableViewCell {
+    
+    //TableViewControllerから取得
+    
+    var favoritedata: [[String:String?]] = []
+    var favindex = 0
+    let userDefaults = UserDefaults.standard
 
     @IBOutlet weak var favoriteLabel: UILabel!
+    
+    @IBOutlet weak var favoriteButtonLabel: UIButton!
+    @IBAction func favoriteButton(_ sender: UIButton) {
+        var favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+        
+        favsum.remove(at:favindex)
+        //お気に入りのニュースをユーザーデフォルトに保存する。
+        userDefaults.set(favsum,forKey:"favsum")
+        //永続保存
+        userDefaults.synchronize()
+        //ここで更新したい。
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
     }
 
@@ -21,5 +41,4 @@ class FavoriteTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
 }

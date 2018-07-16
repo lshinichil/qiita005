@@ -11,14 +11,17 @@ import UIKit
 class FavoriteViewController: UIViewController , UITableViewDelegate,UITableViewDataSource {
     
     @IBOutlet weak var favoriteWebView: UITableView!
+    
     var userDefaults = UserDefaults.standard
     var test: [[String:String?]]  =  []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    override func viewWillAppear(_ animated: Bool) {
         
         test = userDefaults.array(forKey: "favsum") as! [[String : String?]]
-
+        
         self.favoriteWebView.delegate = self
         self.favoriteWebView.dataSource = self
         
@@ -26,6 +29,7 @@ class FavoriteViewController: UIViewController , UITableViewDelegate,UITableView
         let xib = UINib(nibName: "FavoriteTableViewCell", bundle: nil)
         //xibファイルを登録する
         self.favoriteWebView.register(xib, forCellReuseIdentifier: "FavoriteTableViewCell")
+        self.favoriteWebView.reloadData()
         // Do any additional setup after loading the view.
     }
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -43,6 +47,10 @@ class FavoriteViewController: UIViewController , UITableViewDelegate,UITableView
         
         let at = self.test[indexPath.row]
         cell.favoriteLabel?.text = at["title"] as? String
+        cell.favindex = indexPath.row
+        //対象が既に配列にあるかを確認する
+        cell.favoriteButtonLabel.setTitle(" - ", for: .normal)
+        
         
         return cell
     }

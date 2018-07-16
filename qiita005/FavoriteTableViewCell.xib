@@ -27,14 +27,19 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mtm-dd-x0F">
-                        <rect key="frame" x="16" y="8" width="46" height="30"/>
+                        <rect key="frame" x="0.0" y="0.0" width="62" height="44"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" red="0.79697811620000003" green="0.97680455450000003" blue="0.97464106790000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <state key="normal" title="Button"/>
+                        <connections>
+                            <action selector="favoriteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iZm-QN-4B0"/>
+                        </connections>
                     </button>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="favoriteButtonLabel" destination="mtm-dd-x0F" id="grd-SN-xCc"/>
                 <outlet property="favoriteLabel" destination="rB8-ew-3et" id="Tfk-J2-Rxb"/>
             </connections>
         </tableViewCell>
