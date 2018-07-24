@@ -20,7 +20,12 @@ class FavoriteTableViewCell: UITableViewCell {
     
     @IBOutlet weak var favoriteButtonLabel: UIButton!
     @IBAction func favoriteButton(_ sender: UIButton) {
-        var favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+        
+        var favsum: [[String: String?]] = []
+
+            if nil != userDefaults.array(forKey: "favsum"){
+                favsum = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+            }
         
         favsum.remove(at:favindex)
         //お気に入りのニュースをユーザーデフォルトに保存する。

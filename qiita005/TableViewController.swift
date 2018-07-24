@@ -60,7 +60,12 @@ class TableViewController: UIViewController,UITableViewDelegate,UITableViewDataS
             //ボタンの編集
             cell.favoriteButtonLabel.setTitle("...", for: .normal)
         
-            let favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+            var favsum: [[String:String?]] = []
+            if userDefaults.array(forKey: "favsum") != nil {
+                favsum = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+            }
+        
+        
             var favdel: [[String:String?]] = []
             var favoritedata: [[String:String?]] = []
             //atをディクショナリ配列にする

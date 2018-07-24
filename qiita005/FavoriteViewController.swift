@@ -20,7 +20,9 @@ class FavoriteViewController: UIViewController , UITableViewDelegate,UITableView
     }
     override func viewWillAppear(_ animated: Bool) {
         
-        test = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+        if userDefaults.array(forKey: "favsum") != nil {
+            test = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+        }
         
         self.favoriteWebView.delegate = self
         self.favoriteWebView.dataSource = self

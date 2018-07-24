@@ -21,9 +21,11 @@ class QiitaTableViewCell: UITableViewCell {
     @IBOutlet weak var favoriteLabel: UILabel!
     @IBOutlet weak var favoriteButtonLabel: UIButton!
     @IBAction func favoriteButton(_ sender: Any) {
+        var favsum: [[String:String?]] = []
         
-        var favsum: [[String:String?]] = userDefaults.array(forKey: "favsum") as! [[String : String?]]
-        
+        if nil != userDefaults.array(forKey: "favsum"){
+            favsum = userDefaults.array(forKey: "favsum") as! [[String : String?]]
+        }
         var favdel: [[String:String?]] = []
         
         //favdel 削除対象の値を入れる
@@ -46,8 +48,6 @@ class QiitaTableViewCell: UITableViewCell {
         userDefaults.set(favsum,forKey:"favsum")
         //永続保存
         userDefaults.synchronize()
-        favoritedata = []
-        
     }
     
     override func awakeFromNib() {
